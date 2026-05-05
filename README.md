@@ -43,21 +43,25 @@ Python • OpenAI API • LangChain • LangGraph • CrewAI • Vector Database
 
 ## 🚀 Quick Start
 
-```bash
-# Clone and setup
-git clone [repository-url]
-cd generative-ai-course
+Every lab runs in **Google Colab** out of the box. Open any `.ipynb`, click *Open in Colab*, and:
 
-# Install dependencies
-pip install -r requirements.txt
+1. **Set the API key once.** In Colab → 🔑 sidebar → add a secret named exactly `OPENAI_API_KEY` and toggle *Notebook access* ON. Every lab uses the same name, so you set it once.
+2. **Run the first (setup) cell.** It downloads `utils.py`, loads your key, pings OpenAI to confirm the key works (✅ / ❌), and pins a sticky lab-name pill at the top of the page so you always know which notebook you're in.
+3. **Continue with the lab.**
 
-# Configure environment
-cp .env.example .env
-# Add your API keys to .env
+### Shared utilities (`utils.py`)
 
-# Launch
-jupyter lab
-```
+| Symbol | Purpose |
+|---|---|
+| `pretty_print(text, title, theme)` | Styled HTML message boxes (themes: blue, red, yellow, green, gray) |
+| `DEFAULT_CHAT_MODEL` | Default reasoning model (currently `gpt-5`) — change it once, everywhere |
+| `DEFAULT_MINI_MODEL` | Cheaper / faster default (currently `gpt-5-mini`) |
+| `DEFAULT_EMBED_MODEL` | Default embeddings model (currently `text-embedding-3-small`) |
+| `get_openai_key(verify=True)` | Reads `OPENAI_API_KEY` from Colab secret → env var → prompt; verifies |
+| `verify_openai_key()` | Standalone API-key health check |
+| `lab_pill(title)` | Sticky pill banner at top of notebook |
+
+> **📌 Models update fast.** Every lab references `DEFAULT_CHAT_MODEL` rather than a hardcoded model string. To upgrade the whole course to a newer LLM, change one constant in `utils.py`. Students are welcome (and encouraged) to swap to any newer OpenAI / Anthropic / Google model they have access to.
 
 ---
 
